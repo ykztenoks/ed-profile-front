@@ -1,0 +1,80 @@
+import React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+export default function ProductForm({
+  heading,
+  productTitle = "",
+  productPrice = 0,
+  productCategory = "",
+  isUpdating = false,
+  productId,
+}) {
+  const navigate = useNavigate();
+  const [title, setTitle] = useState(productTitle);
+  const [price, setPrice] = useState(productPrice);
+  const [category, setCategory] = useState(productCategory);
+
+  const handleSumbit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log(isUpdating)
+      const response = await fetch(
+        `http://localhost:5005/products/${isUpdating ? `update/${productId}` : ""}`,
+        {
+          method: isUpdating ? "PUT" : "POST",
+          
+          headers: {
+            "Content-Type": "application/json",
+          },
+          
+          body: JSON.stringify({ title, price, category }),
+        }
+        
+      );
+      if (response.status === 201) {
+        const parsed = await response.json();
+        navigate(`/products/${productId}`);
+      }
+      if (response.status === 200) {
+        const parsed = await response.json()
+        navigate(`/products/${parsed._id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <>
+    <h1>{isUpdating ? 'Update Your Listing' : 'Sell Something'}</h1>
+      <form onSubmit={handleSumbit}>
+        <label>
+          Produce Name{" "}
+          <input
+            type="text"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+        </label>
+        <label>
+          Product Price{" "}
+          <input
+            type="number"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+          />
+        </label>
+        <label>
+          Category{" "}
+          <input
+            type="enum"
+            value={category}
+            onChange={(event) => setCategory(event.target.value)}
+          />
+        </label>
+        <button type="submit">{isUpdating ? "Update" : "Sell"}</button>
+      </form>
+    </>
+  );
+}
