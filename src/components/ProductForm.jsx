@@ -7,6 +7,8 @@ export default function ProductForm({
   productTitle = "",
   productPrice = 0,
   productCategory = "",
+  productDescription = "",
+  productBrand = '',
   isUpdating = false,
   productId,
 }) {
@@ -14,6 +16,8 @@ export default function ProductForm({
   const [title, setTitle] = useState(productTitle);
   const [price, setPrice] = useState(productPrice);
   const [category, setCategory] = useState(productCategory);
+  const [description, setDescription] = useState(productDescription)
+  const [brand, setBrand] = useState(productBrand)
 
   const handleSumbit = async (event) => {
     event.preventDefault();
@@ -71,6 +75,22 @@ export default function ProductForm({
             type="enum"
             value={category}
             onChange={(event) => setCategory(event.target.value)}
+          />
+        </label>
+        <label>
+          Description{""}
+          <input
+            type="string"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </label>
+        <label>
+          Brand{""}
+          <input
+            type="string"
+            value={brand}
+            onChange={(event) => setBrand(event.target.value)}
           />
         </label>
         <button type="submit">{isUpdating ? "Update" : "Sell"}</button>
