@@ -41,6 +41,9 @@ const ProductPage = () => {
     <>
       <h1>{product.title}</h1>
       <p>Price: {product.price}</p>
+      <p>Description: {product.description}</p>
+      <p>Category: {product.category}</p>
+      <p>Brand: {product.brand}</p>
       <Link to={`/products/update/${product._id}`}>
         <button type='button'>Update</button>
       </Link>

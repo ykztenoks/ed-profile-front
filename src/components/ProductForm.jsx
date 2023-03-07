@@ -18,6 +18,8 @@ export default function ProductForm({
   const [category, setCategory] = useState(productCategory);
   const [description, setDescription] = useState(productDescription)
   const [brand, setBrand] = useState(productBrand)
+  
+
 
   const handleSumbit = async (event) => {
     event.preventDefault();
@@ -32,7 +34,7 @@ export default function ProductForm({
             "Content-Type": "application/json",
           },
           
-          body: JSON.stringify({ title, price, category }),
+          body: JSON.stringify({ title, price, category, brand, description, addedBy }),
         }
         
       );
