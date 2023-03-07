@@ -22,8 +22,8 @@ function App() {
         <Route path="/products/update/:productId" element={<UpdatePage />} />
         <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path = '/profile' element ={<ProfilePage />} />
-        <Route path="*" element={<PrivateRoute><h1>404 Not Found</h1></PrivateRoute>} />     
+        <Route path = '/profile' element ={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />     
       </Routes>
     </div>
   );

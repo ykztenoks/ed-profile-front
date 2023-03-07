@@ -15,8 +15,7 @@ export default function LoginPage() {
   const [passwordHash, setPasswordHash] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
 
     console.log({ userName, email, passwordHash });
     try {

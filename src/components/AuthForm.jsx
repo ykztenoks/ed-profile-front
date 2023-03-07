@@ -12,11 +12,11 @@ export default function AuthForm ({
 }) {
   const submitCallback = (event) => {
     event.preventDefault();
-    handleSubmit();
+    onSubmit();
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={submitCallback}>
       <label>
         Username
         <input

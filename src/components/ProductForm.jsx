@@ -34,7 +34,7 @@ export default function ProductForm({
             "Content-Type": "application/json",
           },
           
-          body: JSON.stringify({ title, price, category, brand, description, addedBy }),
+          body: JSON.stringify({ title, price, category, brand, description }),
         }
         
       );
