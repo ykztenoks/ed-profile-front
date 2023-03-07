@@ -9,6 +9,8 @@ import SignUpPage from "./Pages/SignUpPage";
 import LoginPage from "./Pages/LoginPage";
 import ProfilePage from "./Pages/ProfilePage";
 import PrivateRoute from "./components/PrivateRoute";
+import ReviewPage from './Pages/ReviewPage'
+import DetailedReviewPage from './Pages/DetailedReviewPage'
 
 
 function App() {
@@ -24,7 +26,9 @@ function App() {
         <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path = '/profile' element ={<ProfilePage />} />
-        <Route path="x" element={<PrivateRoute><h1>404 Not Found</h1></PrivateRoute>} />
+        <Route path='/reviews' element={<ReviewPage/>} />
+        <Route path='/reviews/:reviewId' element={<DetailedReviewPage/>} />
+        <Route path="*" element={<PrivateRoute><h1>404 Not Found</h1></PrivateRoute>} />     
       </Routes>
     </div>
   );
