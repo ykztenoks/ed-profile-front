@@ -21,7 +21,7 @@ export default function ProductForm({
   
 
 
-  const handleSumbit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       console.log(isUpdating)
@@ -54,7 +54,7 @@ export default function ProductForm({
   return (
     <>
     <h1>{isUpdating ? 'Update Your Listing' : 'Sell Something'}</h1>
-      <form onSubmit={handleSumbit}>
+      <form onSubmit={handleSubmit}>
         <label>
           Produce Name{" "}
           <input
