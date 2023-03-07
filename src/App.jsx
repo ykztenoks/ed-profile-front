@@ -8,8 +8,6 @@ import SignUpPage from "./Pages/SignUpPage";
 import LoginPage from "./Pages/LoginPage";
 import ProfilePage from "./Pages/ProfilePage";
 import PrivateRoute from "./components/PrivateRoute";
-import ReviewPage from './Pages/ReviewPage'
-import DetailedReviewPage from './Pages/DetailedReviewPage'
 
 
 function App() {
