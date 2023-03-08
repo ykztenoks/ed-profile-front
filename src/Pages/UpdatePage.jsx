@@ -7,13 +7,14 @@ import { useEffect } from "react";
 export default function UpdatePage() {
   const { productId } = useParams();
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   const [product, setProduct] = useState();
 
   const fetchProduct = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5005/products/${productId}`);
+        `http://localhost:8080/products/${productId}`
+      );
       const parsed = await response.json();
       setProduct(parsed);
       setIsLoading(false);
@@ -29,6 +30,11 @@ export default function UpdatePage() {
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <ProductForm productTitle={product.title} productPrice={product.price} isUpdating productId={productId} />
+    <ProductForm
+      productTitle={product.title}
+      productPrice={product.price}
+      isUpdating
+      productId={productId}
+    />
   );
 }

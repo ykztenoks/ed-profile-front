@@ -3,14 +3,14 @@ import AuthForm from "../components/AuthForm";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [passwordHash, setPasswordHash] = useState("");
   const [email, setEmail] = useState("");
 
   const handleSubmit = async () => {
     console.log({ userName, email, passwordHash });
-    const response = await fetch("http://localhost:5005/signUp", {
+    const response = await fetch("http://localhost:8080/signUp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export default function SignUpPage() {
     const parsed = await response.json();
     console.log(parsed);
     if (response.status === 201) {
-    navigate("/login");
+      navigate("/login");
     }
   };
 

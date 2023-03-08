@@ -7,25 +7,29 @@ const SessionContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState();
   const [isAuthenticated, setisAuthenticated] = useState(false);
-  const [user, setUser]= useState("")
-    const verifyToken = async (jwt) => {
-    const response = await fetch("http://localhost:5005/verify", {
+  const [user, setUser] = useState(null);
+
+  const verifyToken = async (jwt) => {
+    const response = await fetch("http://localhost:8080/verify", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
     });
+    const parsed = await response.json();
+    console.log("response from verify =>", response);
     if (response.status === 200) {
-      console.log(response.data)
+      console.log("response json bitch", parsed);
       setToken(jwt);
-      setUser(jwt)
-      console.log(token);
       setisAuthenticated(true);
+      setUser(response.data);
+      setIsLoading(false);
     } else {
       setToken(undefined);
+      setUser(null);
       setisAuthenticated(false);
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -42,7 +46,17 @@ const SessionContextProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <SessionContext.Provider value={{ setToken, isAuthenticated, isLoading }}>
+    <SessionContext.Provider
+      value={{
+        setToken,
+        isAuthenticated,
+        isLoading,
+        user,
+        setUser,
+        verifyToken,
+        token,
+      }}
+    >
       {children}
     </SessionContext.Provider>
   );
